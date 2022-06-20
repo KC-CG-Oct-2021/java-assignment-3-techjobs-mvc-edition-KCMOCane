@@ -11,37 +11,34 @@
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <!-- TODO #1 - Use a loop to display job results in a table. -->
-    <table class="job-listing">
-        <tr th:each="job: ${jobs}">
-            <td>
-                <p>
-                    Job Id:
-                    <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>
-                </p>
-                <p th:text="${'Name: ' + job.name}"></p>
-                <p>
-                    Employer:
-                    <a th:href="@{'/employers/view/' + ${job.employer.id}}" th:text="${job.employer.name}"></a>
-                </p>
-                <p>
-                    Location:
-                    <a th:href="@{'/locations/view/' + ${job.location.id}}" th:text="${job.location.name}"></a>
-                </p>
-                <p>
-                    Position Type:
-                    <a th:href="@{'/poisitionType/view/' + ${job.positionType.id}}" th:text="${job.positionType.name}"></a>
-                    <td th:text="${job.positionType}"></td>
-                </p>
-                <p>
-                    Skills:
-                    <ul th:each="skill : ${job.skills}">
-                        <li>
-                            <a th:href="@{'/skills/view/' + ${skill.id}" th:text="${skill.name}"></a>
-<!--                            <td th:text="${job.coreCompetency}"></td>-->
-                        </li>
-                    </ul>
-                </p>
-            </td>
+    <table class="job-listing" th:fragment="job-results" th:each="job: ${jobs}">
+        <tr>
+            <th>Job ID:</th>
+            <td th:text="${job.id}"></td>
+
+        </tr>
+        <tr>
+            <th>Name:</th>
+            <td th:text="${job.name}"></td>
+        </tr>
+        <tr>
+            <th>Employer:</th>
+            <td th:text="${job.employer}"></td>
+        </tr>
+<!--                    <a th:href="@{'/employers/view/' + ${job.employer}" th:text="${job.employer}"></a>-->
+        <tr>
+            <th>Location:</th>
+            <td th:text="${job.location}"></td>
+        </tr>
+<!--                    <a th:href="@{'/locations/view/' + ${job.location}}" th:text="${job.location}"></a>-->
+        <tr>
+            <th>Position Type:</th>
+            <td th:text="${job.positionType}"></td>
+        </tr>
+<!--                    <a th:href="@{'/poisitionType/view/' + ${job.positionType}}" th:text="${job.positionType}"></a>-->
+        <tr>
+            <th>Skills:</th>
+            <td th:text="${job.coreCompetency}"></td>
         </tr>
     </table>
 </div>
